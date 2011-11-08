@@ -33,10 +33,21 @@
 
         $el.bind('jquerycontextmenu', function() {
             $.each(items, function(k, v) {
-                var callback = v.callback;
-                delete v['callback'];
+                var callback = v.callback,
+                    options = {},
+                    menuitem = $('<menuitem>', v);
 
-                var menuitem = $('<menuitem>', v);
+                function clone(o) {
+                    function c(o) {
+                        for (var i in o) {
+                            this[i] = o[i];
+                        }
+                    }
+                    return new c(o);
+                };
+
+                options = clone(v);
+                delete options['callback'];
 
                 menuitem.click(function() {
                     if(callback) {

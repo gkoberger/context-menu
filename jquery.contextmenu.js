@@ -1,10 +1,12 @@
 ;(function ( $, window, document, undefined ) {
     var pluginName = 'contextmenu',
         defaults = { },
-        menu = $('<menu>', {'type': 'context', 'id': 'jquerycontextmenu'});
+        menu = $('<menu>', {'type': 'context', 'id': 'jquerycontextmenu', 'css': {'margin': 0}});
 
     // Add the base menu
-    menu.appendTo('body');
+    $(function() {
+        menu.appendTo($('body'));
+    });
 
     function Plugin( element, item ) {
         this.element = element;

@@ -41,7 +41,12 @@
 
     };
 
-    $.fn[pluginName] = function ( title, item ) {
+    $.fn[pluginName] = function ( title, item, callback ) {
+        if(typeof item == "function") {
+            item = {'callback': item};
+        } else {
+            item['callback'] = callback;
+        }
         item['title'] = title;
         return this.each(function () {
             if (!$.data(this, 'plugin_' + pluginName)) {

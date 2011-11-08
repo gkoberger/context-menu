@@ -10,12 +10,32 @@
   <body id="home">
 
     <h1>Context Menu Demo</h1>
-    <ul>
-      <li>A</li>
-      <li>B</li>
-      <li>C</li>
-      <li>D</li>
-    </ul>
+    <div>
+      <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+      </ul>
+    </div>
+    <style>
+      ul {
+        border: 1px solid #ccc;
+        padding: 10px 10px 10px 0;
+        float: left;
+      }
+      ul li {
+        margin-left: 10px;
+        background-color: #eee;
+        width: 200px;
+        height: 200px;
+        display: block;
+        float: left;
+      }
+      div {
+        overflow: auto;
+      }
+    </style>
     <script>
         $(function() {
           $('ul').contextmenu('Color UL', function() { $(this).css('background-color', 'blue'); });

@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Context Menuy Test Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://raw.github.com/gkoberger/context-menu/master/jquery.contextmenu.js"></script>
+  </head>
+
+  <body id="home">
+
+    <h1>Context Menu Demo</h1>
+    <ul>
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+      <li>D</li>
+    </ul>
+    <script>
+        $(function() {
+          $('ul').contextmenu('Color UL', function() { $(this).css('background-color', 'blue'); });
+          $('ul li').contextmenu('Delete LI', function() { $(this).remove(); });
+          $('ul li').contextmenu('Color LI', function() { $(this).css('background-color', 'red'); });
+        });
+    </script>
+
+  </body>
+</html>
+
+
+
 My GitHub Page

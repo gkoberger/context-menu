@@ -33,9 +33,15 @@
 
         $el.bind('jquerycontextmenu', function() {
             $.each(items, function(k, v) {
-                var menuitem = $('<menuitem>', {'label': v.title});
+                var callback = v.callback;
+                delete v['callback'];
+
+                var menuitem = $('<menuitem>', v);
+
                 menuitem.click(function() {
-                    v.callback.apply($el);
+                    if(callback) {
+                        callback.apply($el);
+                    }
                 });
                 menu.append(menuitem);
             });
@@ -43,14 +49,15 @@
 
     };
 
-    $.fn[pluginName] = function ( title, item, callback ) {
+    $.fn[pluginName] = function ( label, item, callback ) {
         if(typeof item == "function") {
             item = {'callback': item};
         } else {
             item['callback'] = callback;
         }
-        item['title'] = title;
+        item['label'] = label;
         return this.each(function () {
+            item = $.extend({'callback': false}, item);
             if (!$.data(this, 'plugin_' + pluginName)) {
                 $.data(this, 'plugin_' + pluginName, new Plugin( this, item ));
             } else {
